@@ -20,7 +20,7 @@ module CarrierWave
             serialization_column = options[:mount_on] || column
 
             send(:"#{serialization_column}_changed?") ||              # after_save support
-            previous_changes.has_key?(:"#{serialization_column}") ||  # after_commit support
+            saved_changes.has_key?(:"#{serialization_column}") ||  # after_commit support
             send(:"remote_#{column}_url").present? ||                 # Remote upload support
             send(:"#{column}_cache").present?                         # Form failure support
           end
